@@ -1,0 +1,48 @@
+<aside>
+  <header>
+    <h2>
+      <small><%= data.appName %></small><br>
+      Workshops
+    </h2>
+    <p>Profitiere von unserer jahrelangen Erfahrung in der Arbeit in und mit verteilten Teams. Gerne senden wir dir weitere Informationen zu unseren Workshops zu.</p>
+  </header>
+  <section>
+    <form>
+      <div class="form-group">
+        <label for="email">E-Mail-Adresse</label>
+        <input type="email" class="form-control" id="email" placeholder="z.B. &quot;alex@meyer.de&quot;" required>
+      </div>
+      <div class="form-group">
+        <label for="name">Dein Name</label>
+        <input type="text" class="form-control" id="name" placeholder="z.B. &quot;Alex Meyer&quot;" required>
+      </div>
+      <div class="form-group">
+        <label>Wie groß ist Dein Team?</label>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="teamsize" id="teamsize-s" value="<5">
+            Kleiner als 5 Personen
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="teamsize" id="teamsize-m" value="6-50">
+            6 bis 50 Personen
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="teamsize" id="teamsize-l" value=">50">
+            mehr als 50 Personen
+          </label>
+        </div>
+      </div>
+      <footer>
+        <button class="btn btn-outline-primary" type="submit">
+          absenden
+          <i class="fa fa-paper-plane-o"  aria-hidden="true"></i>
+        </button>
+      </footer>
+    </form>
+  </section>
+</aside>

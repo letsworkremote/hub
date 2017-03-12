@@ -21,14 +21,29 @@ body > main {
     @include make-col(12);
   }
   article {
+    margin-bottom: 4rem;
     @include media-breakpoint-up(md) {
       @include make-col(4);
     }
+    h2 {
+      @include main-font();
+      text-transform: uppercase;
+      font-weight: 900;
+      @include border-bottom();
+      &:after {
+        margin-top: 1rem;
+      }
+    }
   }
   aside {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     @include media-breakpoint-up(md) {
       @include make-col-offset(1);
       @include make-col(3);
+    }
+    footer {
+      text-align: right;
     }
   }
 
@@ -57,11 +72,15 @@ body > main {
       opacity: 0.75;
     }
   }
-  footer {
-    text-align: right;
-  }
-
   a {
     color: darken($brand-primary, 10);
+  }
+}
+
+body.article > main {
+  article {
+    @include media-breakpoint-up(md) {
+      @include make-col(8);
+    }
   }
 }
