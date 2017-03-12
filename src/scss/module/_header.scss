@@ -1,0 +1,36 @@
+body > header {
+  #metawrapper  {
+    background-color: rgba(0,0,0,0.94);
+    color: #fff;
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 10px;
+    a {
+      color: #fff;
+    }
+  }
+  nav#meta {
+    @include make-container();
+    @include make-container-max-widths();
+    section {
+      @include make-row();
+    }
+    div {
+      @include make-col(6);
+      padding: 0.75rem 0;
+      em {
+        font-style: normal;
+        color: $brand-primary;
+      }
+      a + a {
+        padding: 0;
+        padding-left: 1rem;
+        margin-left: 1rem;
+        border-left: 1px solid rgba(255,255,255,0.94)
+      }
+      &:last-child {
+        text-align: right;
+      }
+    }
+  }
+}
