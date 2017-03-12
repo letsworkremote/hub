@@ -1,5 +1,32 @@
-html, body {
-  font-family: 'Roboto Slab', sans-serif;
+@mixin sans-font() {
+  font-family: Arial, sans-serif;
+  letter-spacing: 0.3px;
+  word-spacing: 0.75px;
+}
+
+@mixin main-font() {
+  font-family: 'Roboto', sans-serif;
   text-rendering: optimizelegibility;
-  font-weight: 400;
+  letter-spacing: 0;
+  word-spacing: 0;
+}
+
+body {
+  @include main-font();
+}
+
+svg {
+  path {
+    fill: rgba(0, 0, 0, 0.94) !important;
+    &.icon-color-primary {
+      fill: $brand-primary !important;
+    }
+  }
+}
+
+.btn {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: $small-font-size;
 }

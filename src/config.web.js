@@ -7,7 +7,7 @@ export const config = {
   appName: 'Let\'s Work Remote',
   description: '🇩🇪 Deutschsprachiges Portal rund um die Arbeit in #Remote Teams.  🏝️ Ein Projekt von @kamilleblumm 🏵️ und @coderbyheart ✨⌨️.',
   lang: 'de',
-  baseHref: '/',
+  baseHref: process.env.BASE_HREF || '/',
   webHost: process.env.WEB_HOST || 'https://lets-work-remote.de'
 }
 

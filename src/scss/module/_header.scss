@@ -1,36 +1,85 @@
-body > header {
-  #metawrapper  {
-    background-color: rgba(0,0,0,0.94);
+#wrapmetanav {
+  background-color: rgba(0, 0, 0, 0.94);
+  color: #fff;
+  width: 100%;
+}
+#metanav {
+  @include sans-font();
+  @include make-container();
+  @include make-container-max-widths();
+  text-transform: uppercase;
+  font-size: 10px;
+  a {
     color: #fff;
-    width: 100%;
-    text-transform: uppercase;
-    font-size: 10px;
-    a {
-      color: #fff;
+  }
+  section {
+    @include make-row();
+  }
+  div {
+    @include make-col-ready();
+    @include make-col(6);
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    em {
+      font-style: normal;
+      color: $brand-primary;
+    }
+    a + a {
+      padding: 0;
+      padding-left: 1rem;
+      margin-left: 1rem;
+      border-left: 1px solid rgba(255, 255, 255, 0.94)
+    }
+    &:last-child {
+      text-align: right;
     }
   }
-  nav#meta {
-    @include make-container();
-    @include make-container-max-widths();
-    section {
-      @include make-row();
+}
+#wrapmainnav {
+  background-color: #fff;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+#mainnav {
+  @include make-container();
+  @include make-container-max-widths();
+  text-transform: uppercase;
+  a {
+    color: rgba(0, 0, 0, 0.85);
+    &.active {
+      color: $brand-primary;
     }
-    div {
+    &:hover {
+      text-decoration: none;
+      color: $brand-primary;
+    }
+    & + a {
+      margin-left: 1rem;
+    }
+  }
+  section {
+    @include make-row();
+  }
+  div {
+    @include make-col-ready();
+    @include make-col(12);
+    @include media-breakpoint-up(sm) {
       @include make-col(6);
-      padding: 0.75rem 0;
-      em {
-        font-style: normal;
-        color: $brand-primary;
-      }
-      a + a {
-        padding: 0;
-        padding-left: 1rem;
-        margin-left: 1rem;
-        border-left: 1px solid rgba(255,255,255,0.94)
-      }
-      &:last-child {
-        text-align: right;
+    }
+    display: flex;
+    &:last-child {
+      justify-content: space-around;
+      padding-bottom: 1rem;
+      @include media-breakpoint-up(sm) {
+        align-items: center;
+        justify-content: flex-end;
+        padding-bottom: 0;
       }
     }
+  }
+  svg {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: -0.5rem;
   }
 }

@@ -7,7 +7,7 @@ notifications:
 node_js:
 - stable
 script:
-  - make build
+  - BASE_HREF=/hub/ make build
 after_success:
   - cd build
   - git init
