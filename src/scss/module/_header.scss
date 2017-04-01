@@ -18,6 +18,16 @@
   div {
     @include make-col-ready();
     @include make-col(6);
+    &:first-child {
+      @include media-breakpoint-up(md) {
+        @include make-col(9);
+      }
+    }
+    &:last-child {
+      @include media-breakpoint-up(md) {
+        @include make-col(3);
+      }
+    }
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
     em {
@@ -32,6 +42,12 @@
     }
     &:last-child {
       text-align: right;
+    }
+    span {
+      display: none;
+      @include media-breakpoint-up(md) {
+        display: inline;
+      }
     }
   }
 }
