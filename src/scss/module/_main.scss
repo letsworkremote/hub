@@ -84,3 +84,14 @@ body.article > main {
     }
   }
 }
+
+body.author > main {
+  article {
+    @include media-breakpoint-up(md) {
+      @include make-col(8);
+      img {
+        width: 50%;
+      }
+    }
+  }
+}

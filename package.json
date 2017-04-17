@@ -1,7 +1,7 @@
 {
   "name": "@letsworkremote/hub",
   "version": "0.0.0-development",
-  "description": "Bootstrap v4 based website theme for lets-work-remote.de",
+  "description": "Bootstrap v4 website template",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "standard",
@@ -28,8 +28,9 @@
   "homepage": "https://github.com/letsworkremote/hub#readme",
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
-    "browserify": "^14.1.0",
     "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
     "meownica-web-fonts-loader": "^1.2.1"
   },
   "devDependencies": {
@@ -38,11 +39,16 @@
     "babel-preset-env": "^1.2.1",
     "babel-preset-es2015": "^6.22.0",
     "babelify": "^7.3.0",
+    "browserify": "^14.1.0",
+    "contentful": "^4.1.2",
     "husky": "<2.0.0",
+    "lodash": "^4.17.4",
+    "moment": "^2.18.1",
     "node-sass": "^4.3.0",
     "node-static": "^0.7.9",
     "rheactor-build-views": "4.x",
     "semantic-release": "^6.3.2",
+    "showdown": "^1.6.4",
     "standard": "^8.6.0",
     "uglifycss": "^0.0.25",
     "validate-commit-msg": "^2.10.1"

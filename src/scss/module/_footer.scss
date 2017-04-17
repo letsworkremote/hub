@@ -34,11 +34,9 @@ body > footer {
       font-weight: 900;
     }
   }
-  svg {
+  .logo {
     margin-left: -0.5rem;
-    path {
-      fill: rgba(255, 255, 255, 0.94) !important;
-    }
+    width: 180px;
   }
   & + footer {
     background-color: rgba(0, 0, 0, 0.95);

@@ -36,9 +36,7 @@
     }
     a + a {
       padding: 0;
-      padding-left: 1rem;
       margin-left: 1rem;
-      border-left: 1px solid rgba(255, 255, 255, 0.95)
     }
     &:last-child {
       text-align: right;
@@ -93,9 +91,29 @@
       }
     }
   }
-  svg {
+  .logo {
     margin-top: 1rem;
     margin-bottom: 1rem;
     margin-left: -0.5rem;
+    width: 180px;
+  }
+}
+
+body.not-scrolling {
+  #metanav {
+    .hide-not-scrolling {
+      display: none;
+    }
+  }
+}
+body.scrolling {
+  #wrapmetanav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+  }
+  #mainnav {
+    margin-top: 39px;
   }
 }

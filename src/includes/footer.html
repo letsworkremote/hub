@@ -3,32 +3,33 @@
     <section>
       <div>
         <a href="./">
-          <%= svg['logo'] %>
+          <img src="<%= config.logoInverted %>" alt="<%= config.appName %>" class="logo">
         </a>
         <p>
-          Deutschsprachiges Portal rund um die Arbeit in verteilten Teams.
+          <%= config.shortDescription %>
         </p>
         <hr>
         <p>
-          <strong><%= data.appName %></strong><br>
+          <strong><%= config.appName %></strong><br>
           c/o Tanja und Markus Tacker<br>
           Senefelderstr. 63<br>
           63069 Offenbach
         </p>
         <p>
-          <a href="mailto:letsworkremote@gmail.com"><i class="fa fa-envelope"></i> letsworkremote@gmail.com</a><br>
+          <a href="mailto:<%= config.email %>"><i class="fa fa-envelope"></i> <%= config.email %></a><br>
           <a href="tel:+491796678859"><i class="fa fa-mobile"></i> (01 79) 6 67 88 59</a>
         </p>
         <hr>
         <p>
-          <a href="/impressum.html">Impressum</a><br>
-          <a href="/datenschutz.html">Datenschutzerklärung</a>
+          <% collections['footer-nav'].map(({slug, title}) => { %>
+            <a href="./<%= slug %>.html"><%= title %></a><br>
+          <%}) %>
         </p>
         <p> &copy; 2017 &middot; Alle Rechte vorbehalten. </p>
       </div>
       <div>
         <h2>Newsletter</h2>
-        <p>Im <strong><%= data.appName %></strong> Newsletter erhältst Du regelmäßig aktuelle Links und Inspiration
+        <p>Im <strong><%= config.appName %></strong> Newsletter erhältst Du regelmäßig aktuelle Links und Inspiration
           rund um die Arbeit in verteilten Teams.</p>
         <hr>
         <form class="form-inline" action="https://lets-work-remote.us15.list-manage.com/subscribe/post" method="post">
@@ -45,11 +46,11 @@
         <p>Auch in den sozialen Medien findest Du uns:</p>
         <hr>
         <p>
-          <a href="https://twitter.com/letsworkremote" target="_blank" title="<%= data.appName %> bei Twitter">
+          <a href="https://twitter.com/<%= config.twitter %>" target="_blank" title="<%= config.appName %> bei Twitter">
             <i class="fa fa-twitter"></i>
             Twitter
           </a><br>
-          <a href="https://facebook.com/letsworkremote" target="_blank" title="<%= data.appName %> bei Facebook">
+          <a href="https://facebook.com/letsworkremote" target="_blank" title="<%= config.appName %> bei Facebook">
             <i class="fa fa-facebook"></i>
             Facebook
           </a>

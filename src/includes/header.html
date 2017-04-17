@@ -3,12 +3,14 @@
     <nav id="metanav">
       <section>
         <div>
-          <a href="./"><em>♥</em> Let's <em>work</em> remote</a>
-          <span>&middot; Deutschsprachiges Portal rund um die Arbeit in verteilten Teams</span>
+          <a href="./"><%= config.textLogo %></a>
+          <span>&middot; <%= config.shortDescription %></span>
         </div>
         <div>
-          <a href="./blog/">Blog</a>
-          <a href="./contact/">Kontakt</a>
+          <a href="./" class="hide-not-scrolling <% if(build.identifier === 'index') { %>active<% } %>">Start</a>
+          <% collections['header-nav'].map(({slug, title}) => { %>
+          <a href="./<%= slug %>.html" class="hide-not-scrolling <% if(build.identifier === 'coaching') { %>active<% } %>"><%= title %></a>
+          <%}) %>
         </div>
       </section>
     </nav>
@@ -18,13 +20,14 @@
       <section>
         <div>
           <a href="./">
-            <%= svg['logo'] %>
+            <img src="<%= config.logo %>" alt="<%= config.appName %>" class="logo">
           </a>
         </div>
         <div>
-          <a href="./" class="active">Hub</a>
-          <a href="./blog/">Blog️</a>
-          <a href="./coaching/">Unterstützung</a>
+          <a href="./" class="<% if(build.identifier === 'index') { %>active<% } %>">Start</a>
+          <% collections['header-nav'].map(({slug, title}) => { %>
+          <a href="./<%= slug %>.html" class="<% if(build.identifier === 'coaching') { %>active<% } %>"><%= title %></a>
+          <%}) %>
         </div>
       </section>
     </nav>

@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-.PHONY: help deploy development
+.PHONY: help deploy development build
 
 help: ## (default), display the list of make commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -12,30 +12,14 @@ guard-%:
 		exit 1; \
 	fi
 
-# HTML
+# Content
 
-build/config.json: src/config.web.js package.json
+build/content.json: src/sync-content.js
 	@mkdir -p $(dir $@)
 	node_modules/.bin/babel-node $< > $@
 
-htmlsrc := $(shell find src/*.html -type f)
-htmlbuild := $(patsubst src/%,build/%,$(htmlsrc))
-build/%.html: src/%.html src/includes/*.html assets/img/*.svg build/config.json
-	@mkdir -p $(dir $@)
-ifeq ($(ENVIRONMENT),development)
-	node_modules/.bin/babel-node node_modules/.bin/rheactor-build-views build -s assets/img/\*.svg build/config.json $< $@
-else
-	node_modules/.bin/babel-node node_modules/.bin/rheactor-build-views build -m -s assets/img/\*.svg build/config.json $< $@
-endif
-
-# Assets
-
-assetssrcfiles := $(shell find assets/ -type f)
-assetsbuildfiles := $(patsubst assets/%,build/%,$(assetssrcfiles))
-
-build/%: assets/%
-	@mkdir -p $(dir $@)
-	cp $< $@
+# HTML
+htmlsrc := $(shell find src/**/*.html -type f)
 
 # Stylesheets
 
@@ -78,12 +62,10 @@ build/js/%.js: src/js/%.js
 AWS_REGION ?= eu-central-1
 AWS_BUCKET ?= lets-work-remote.de
 S3_CFG := /tmp/.s3cfg-$(AWS_BUCKET)
+VERSION ?= $(shell node -e "process.stdout.write(require('./package.json').version)")
+DEPLOY_TIME ?= $(shell date +%s)
 
 deploy: build guard-AWS_SECRET_ACCESS_KEY guard-AWS_ACCESS_KEY ## Deploy to AWS S3
-	# Collect dynamic variables
-	$(eval VERSION := $(shell node_modules/.bin/babel-node src/config.web.cli.js version))
-	$(eval DEPLOY_TIME := $(shell date +%s))
-
 	# Build
 	make clean
 	ENVIRONMENT=production make -B build
@@ -138,4 +120,5 @@ clean:
 development: ## Build for development environment
 	ENVIRONMENT=development make build
 
-build: $(htmlbuild) $(cssbuild) $(assetsbuildfiles) $(fonts) build/js/main.min.js ## Build for production environment
+build: guard-CONTENTFUL_SPACE guard-CONTENTFUL_KEY guard-CONTENTFUL_LOCALE build/content.json $(htmlsrc) $(cssbuild) $(fonts) build/js/main.min.js ## Build for production environment
+	node_modules/.bin/babel-node src/build.js

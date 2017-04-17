@@ -15,15 +15,6 @@ body {
   @include main-font();
 }
 
-svg {
-  path {
-    fill: rgba(0, 0, 0, 0.94) !important;
-    &.icon-color-primary {
-      fill: $brand-primary !important;
-    }
-  }
-}
-
 img {
   width: 100%;
 }

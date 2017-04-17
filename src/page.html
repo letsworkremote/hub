@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="<%= config.lang %>">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="<%= config.description %>">
+  <meta name="version" content="<%= build.version %>-<%= build.time %>">
+  <title><%= content.title %> &middot; <%= config.appName %></title>
+  <base href="<%= config.baseHref %>">
+  <link rel="stylesheet" href="./css/styles.min.css?v=<%= build.version %>-<%= build.time %>">
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:site" content="@<%= config.twitter %>"/>
+  <meta name="twitter:title" content="<%= content.title %>"/>
+  <meta name="twitter:description" content="<%= content.title %> von <%= config.appName %>"/>
+  <meta name="twitter:image" content="<%= config.twitterImage %>"/>
+  <!-- Facebook OpenGraph Tags -->
+  <meta property="og:url" content="<%= page.url %>"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="<%= content.title %>"/>
+  <meta property="og:description" content="<%= content.title %> von <%= config.appName %>"/>
+  <meta property="og:image" content="<%= config.twitterImage %>"/>
+</head>
+<body class="article">
+<%= includes['header'] %>
+<main>
+  <div>
+    <article>
+      <header>
+        <h1 role="heading">
+          <% if (content.subtitle) { %><small><%= content.subtitle %></small> <br><% } %>
+          <%= content.title %>
+        </h1>
+      </header>
+      <section>
+        <%= content.content %>
+      </section>
+    </article>
+    <%= includes['aside-workshops'] %>
+  </div>
+</main>
+<%= includes['footer'] %>
+<script type="text/javascript" src="./js/main.min.js"></script>
+</body>
+</html>
