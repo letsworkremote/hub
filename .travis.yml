@@ -4,19 +4,18 @@ cache:
   - node_modules
 notifications:
   email: false
-node_js:
-- stable
+node_js: node
 script:
-  - npm run lint
-  - make build
+- npm run lint
+- make build
 after_success:
-  - cd build
-  - git init
-  - git config user.name "Travis CI"
-  - git config user.email "github@coderbyheart.com"
-  - git add .
-  - git commit -m "Deploy to GitHub Pages"
-  - git push --force --quiet "https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" master:gh-pages > /dev/null 2>&1
+- cd build
+- git init
+- git config user.name "Travis CI"
+- git config user.email "github@coderbyheart.com"
+- git add .
+- git commit -m "Deploy to GitHub Pages"
+- git push --force --quiet "https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" master:gh-pages > /dev/null 2>&1
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/

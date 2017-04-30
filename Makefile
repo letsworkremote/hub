@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-.PHONY: help deploy development build
+.PHONY: help deploy development build underline
 
 help: ## (default), display the list of make commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -14,29 +14,18 @@ guard-%:
 
 # Content
 
-build/content.json: src/sync-content.js
+build/content.json: guard-CONTENTFUL_SPACE guard-CONTENTFUL_KEY
 	@mkdir -p $(dir $@)
-	node_modules/.bin/babel-node $< > $@
+	node_modules/.bin/cswg sync -s $(CONTENTFUL_SPACE) -t $(CONTENTFUL_KEY) > $@
 
 # HTML
-htmlsrc := $(shell find src/**/*.html -type f)
 
-# Stylesheets
+build/templates: src/**/*.html
+	@mkdir -p $@
+	cp -r node_modules/@coderbyheart/underline/templates/* $@
+	cp -r src/* $@
 
-# Build variables for CSS artefacts
-csssassed := build/css/styles.css
-cssbuild := build/css/styles.min.css
-
-build/css/%.min.css: build/css/%.css
-ifeq ($(ENVIRONMENT),development)
-	cp $< $@
-else
-	node_modules/.bin/uglifycss $< > $@
-endif
-
-build/css/%.css: src/scss/%.scss src/scss/**/*.scss
-	@mkdir -p $(dir $@)
-	node_modules/.bin/node-sass $< $@
+underline: build/css/underline.min.css build/js/underline.min.js
 
 fonts := $(patsubst node_modules/font-awesome/%,build/%,$(shell find node_modules/font-awesome/fonts/fontawesome-webfont.* -type f))
 
@@ -44,18 +33,13 @@ build/fonts/%: node_modules/font-awesome/fonts/%
 	@mkdir -p $(dir $@)
 	cp $< $@
 
-# JavaScript
-
-build/js/%.min.js: build/js/%.js
-ifeq "${ENVIRONMENT}" "development"
-	cp $< $@
-else
-	./node_modules/.bin/uglifyjs $< -o $@
-endif
-
-build/js/%.js: src/js/%.js
+build/css/underline.min.css:
 	@mkdir -p $(dir $@)
-	./node_modules/.bin/browserify $< -o $@ -t [ babelify ]
+	cp -r node_modules/@coderbyheart/underline/dist/css/* $(dir $@)
+
+build/js/underline.min.js:
+	@mkdir -p $(dir $@)
+	cp -r node_modules/@coderbyheart/underline/dist/js/* $(dir $@)
 
 # DEPLOY
 
@@ -120,5 +104,5 @@ clean:
 development: ## Build for development environment
 	ENVIRONMENT=development make build
 
-build: guard-CONTENTFUL_SPACE guard-CONTENTFUL_KEY guard-CONTENTFUL_LOCALE build/content.json $(htmlsrc) $(cssbuild) $(fonts) build/js/main.min.js ## Build for production environment
-	node_modules/.bin/babel-node src/build.js
+build: build/content.json build/templates guard-CONTENTFUL_LOCALE underline ## Build for production environment
+	node_modules/.bin/cswg build -c $< -v $(VERSION) -l $(CONTENTFUL_LOCALE) -e production -t build/templates
