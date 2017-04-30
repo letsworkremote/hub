@@ -24,11 +24,10 @@
   },
   "homepage": "https://github.com/letsworkremote/hub#readme",
   "dependencies": {
-    "@coderbyheart/underline": "^1.0.0"
+    "@coderbyheart/underline": "^1.0.2"
   },
   "devDependencies": {
     "@coderbyheart/contentful-static-website-generator": "^1.0.1",
-    "font-awesome": "^4.7.0",
     "husky": "<2.0.0",
     "node-static": "^0.7.9",
     "semantic-release": "^6.3.2",

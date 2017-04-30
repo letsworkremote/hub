@@ -27,9 +27,9 @@ build/templates: src/**/*.html
 
 fonts := $(patsubst node_modules/font-awesome/%,build/%,$(shell find node_modules/font-awesome/fonts/fontawesome-webfont.* -type f))
 
-build/fonts/%: node_modules/font-awesome/fonts/%
-	@mkdir -p $(dir $@)
-	cp $< $@
+build/fonts:
+	@mkdir -p $@
+	cp node_modules/@coderbyheart/underline/dist/fonts/* $@
 
 build/css/underline.min.css:
 	@mkdir -p $(dir $@)
@@ -39,7 +39,7 @@ build/js/underline.min.js:
 	@mkdir -p $(dir $@)
 	cp -r node_modules/@coderbyheart/underline/dist/js/* $(dir $@)
 
-underline: build/css/underline.min.css build/js/underline.min.js $(fonts)
+underline: build/css/underline.min.css build/js/underline.min.js build/fonts
 
 # DEPLOY
 
