@@ -27,7 +27,7 @@
     "@coderbyheart/underline": "^1.0.0"
   },
   "devDependencies": {
-    "@coderbyheart/contentful-static-website-generator": "^1.0.0",
+    "@coderbyheart/contentful-static-website-generator": "^1.0.1",
     "font-awesome": "^4.7.0",
     "husky": "<2.0.0",
     "node-static": "^0.7.9",
