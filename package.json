@@ -24,14 +24,14 @@
   },
   "homepage": "https://github.com/letsworkremote/hub#readme",
   "dependencies": {
-    "@coderbyheart/underline": "^1.0.2"
+    "@coderbyheart/underline": "^1.1.0"
   },
   "devDependencies": {
-    "@coderbyheart/contentful-static-website-generator": "^1.0.1",
-    "husky": "<2.0.0",
+    "@coderbyheart/contentful-static-website-generator": "^1.1.0",
+    "husky": "^0.13.3",
     "node-static": "^0.7.9",
     "semantic-release": "^6.3.2",
-    "standard": "^8.6.0",
-    "validate-commit-msg": "^2.10.1"
+    "standard": "^10.0.2",
+    "validate-commit-msg": "^2.12.1"
   }
 }
