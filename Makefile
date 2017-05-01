@@ -20,7 +20,7 @@ build/content.json: guard-CONTENTFUL_SPACE guard-CONTENTFUL_KEY
 
 # HTML
 
-build/templates: src/**/*.html
+build/templates: src/**/*.html node_modules/@coderbyheart/underline/templates/*.html node_modules/@coderbyheart/underline/templates/**/*.html
 	@mkdir -p $@
 	cp -r node_modules/@coderbyheart/underline/templates/* $@
 	cp -r src/* $@
@@ -39,7 +39,7 @@ build/js/underline.min.js:
 	@mkdir -p $(dir $@)
 	cp -r node_modules/@coderbyheart/underline/dist/js/* $(dir $@)
 
-underline: build/css/underline.min.css build/js/underline.min.js build/fonts
+underline: build/css/underline.min.css build/js/underline.min.js build/fonts build/templates
 
 # DEPLOY
 
