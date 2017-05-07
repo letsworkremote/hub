@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="<%= config.lang %>">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="<%= config.description %>">
+  <meta name="version" content="<%= build.version %>-<%= build.time %>">
+  <meta name="disqus" content="<%= config.disqus %>">
+  <title><%= content.title %> &middot; <%= config.appName %></title>
+  <base href="<%= config.baseHref %>">
+  <link rel="stylesheet" href="./css/underline.min.css?v=<%= build.version %>-<%= build.time %>">
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:site" content="@<%= config.twitter %>"/>
+  <meta name="twitter:title" content="<%= content.title %>"/>
+  <meta name="twitter:description" content="<%= striptags(content.abstract) %>"/>
+  <meta name="twitter:image" content="<% if (content.hero) { %><%= content.hero.file.url %>?w=1200&amp;h=600&amp;fit=thumb<% } else { %><%= config.twitterImage %><% } %>"/>
+  <!-- Facebook OpenGraph Tags -->
+  <meta property="og:url" content="<%= page.url %>"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="<%= content.title %>"/>
+  <meta property="og:description" content="<%= striptags(content.abstract) %>"/>
+  <meta property="og:image" content="<% if (content.hero) { %><%= content.hero.file.url %>?w=1200&amp;h=600&amp;fit=thumb<% } else { %><%= config.twitterImage %><% } %>"/>
+</head>
+<body class="article">
+<%= includes['header'] %>
+<main>
+  <div>
+    <article>
+      <header>
+        <h1 role="heading">
+          <% if (content.subtitle) { %><small><%= content.subtitle %></small> <br><% } %>
+          <%= content.title %>
+        </h1>
+        <p>
+          <small>
+            <time datetime="<%= content.publicationDate %>"><%= shortDate(content.publicationDate) %></time>
+            von <a href="./<%= content.author.slug %>.html"><%= content.author.name %></a>
+          </small>
+        </p>
+        <% if (content.hero) { %><img src="<%= content.hero.file.url %>?w=600&amp;h=400&amp;fit=thumb" alt="<%= content.subtitle %>: <%= content.title %>"><% } %>
+      </header>
+      <section>
+        <%= content.content %>
+      </section>
+      <footer>
+        <section class="sharing">
+          <h2>Teilen</h2>
+          <a class="share" href="https://facebook.com/sharer/sharer.php?u=<%= encodeURIComponent(page.url) %>" target="_blank" aria-label="Share on Facebook">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+            <span>Share on</span> <strong>Facebook</strong>
+          </a>
+
+          <a class="share" href="https://twitter.com/intent/tweet/?text=<%= encodeURIComponent(config.description) %>&amp;url=<%= encodeURIComponent(page.url) %>" target="_blank" aria-label="Share on Twitter">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+            <span>Share on</span> <strong>Twitter</strong>
+          </a>
+
+          <a class="share" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=<%= encodeURIComponent(page.url) %>&amp;title=<%= encodeURIComponent(config.description) %>&amp;summary=<%= encodeURIComponent(config.description) %>&amp;source=<%= encodeURIComponent(page.url) %>" target="_blank" aria-label="Share on LinkedIn">
+            <i class="fa fa-linkedin" aria-hidden="true"></i>
+            <span>Share on</span> <strong>LinkedIn</strong>
+          </a>
+
+          <a class="share" href="https://www.xing.com/app/user?op=share;url=<%= encodeURIComponent(page.url) %>;title=<%= encodeURIComponent(config.description) %>" target="_blank" aria-label="Share on XING">
+            <i class="fa fa-xing" aria-hidden="true"></i>
+            <span>Share on</span> <strong>XING</strong>
+          </a>
+        </section>
+        <section class="comments">
+          <h2>Kommentare</h2>
+          <div id="disqus_thread"></div>
+        </section>
+      </footer>
+    </article>
+    <%= includes['aside-workshops'] %>
+  </div>
+</main>
+<%= includes['footer'] %>
+<script type="text/javascript" src="js/underline.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<footer>
+  <article>
+    <section>
+      <div>
+        <a href="">
+          <img src="<%= config.logoInverted %>" alt="<%= config.appName %>" class="logo">
+        </a>
+        <p>
+          <%= config.shortDescription %>
+        </p>
+        <hr>
+        <%= blocks.footerImprint %>
+        <hr>
+        <p>
+          <% collections['footer-nav'].map(({slug, title}) => { %>
+            <a href="./<%= slug %>.html"><%= title %></a><br>
+          <%}) %>
+        </p>
+        <%= blocks.footerCopyright %>
+      </div>
+      <div>
+        <%= blocks.footerNewsletter %>
+      </div>
+      <div>
+        <%= blocks.footerSocialMedia %>
+      </div>
+    </section>
+  </article>
+</footer>

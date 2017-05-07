@@ -1,0 +1,35 @@
+<header>
+  <div id="wrapmetanav">
+    <nav id="metanav">
+      <section>
+        <div>
+          <a href=""><%= config.textLogo %></a>
+          <span>&middot; <%= config.shortDescription %></span>
+        </div>
+        <div>
+          <a href="" class="hide-not-scrolling <% if(build.identifier === 'index') { %>active<% } %>">Start</a>
+          <% collections['header-nav'].map(({slug, title}) => { %>
+          <a href="./<%= slug %>.html" class="hide-not-scrolling <% if(build.identifier === 'coaching') { %>active<% } %>"><%= title %></a>
+          <%}) %>
+        </div>
+      </section>
+    </nav>
+  </div>
+  <div id="wrapmainnav">
+    <nav id="mainnav">
+      <section>
+        <div>
+          <a href="">
+            <img src="<%= config.logo %>" alt="<%= config.appName %>" class="logo">
+          </a>
+        </div>
+        <div>
+          <a href="" class="<% if(build.identifier === 'index') { %>active<% } %>">Start</a>
+          <% collections['header-nav'].map(({slug, title}) => { %>
+          <a href="./<%= slug %>.html" class="<% if(build.identifier === 'coaching') { %>active<% } %>"><%= title %></a>
+          <%}) %>
+        </div>
+      </section>
+    </nav>
+  </div>
+</header>
